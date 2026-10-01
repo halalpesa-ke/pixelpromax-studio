@@ -7,7 +7,11 @@
 <title>PixelProMax Studio | Photo & Video Editing</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -40,7 +44,9 @@ font-weight:800;
 color:#f5c542;
 }
 
-.logo span{color:#fff}
+.logo span{
+color:#fff;
+}
 
 .nav a{
 color:#ddd;
@@ -61,7 +67,9 @@ font-size:42px;
 margin-bottom:15px;
 }
 
-.hero h1 span{color:#f5c542}
+.hero h1 span{
+color:#f5c542;
+}
 
 .hero p{
 max-width:700px;
@@ -119,7 +127,9 @@ color:#f5c542;
 margin-bottom:10px;
 }
 
-.card p{color:#aaa}
+.card p{
+color:#aaa;
+}
 
 .editor{
 background:#111;
@@ -129,6 +139,7 @@ padding:20px;
 }
 
 .upload{
+display:block;
 border:2px dashed #555;
 border-radius:12px;
 padding:35px 20px;
@@ -137,9 +148,13 @@ cursor:pointer;
 margin-bottom:20px;
 }
 
-.upload:hover{border-color:#f5c542}
+.upload:hover{
+border-color:#f5c542;
+}
 
-input[type=file]{display:none}
+input[type=file]{
+display:none;
+}
 
 .preview{
 min-height:250px;
@@ -150,6 +165,7 @@ align-items:center;
 justify-content:center;
 overflow:hidden;
 margin-bottom:20px;
+position:relative;
 }
 
 .preview img,
@@ -157,6 +173,7 @@ margin-bottom:20px;
 max-width:100%;
 max-height:500px;
 display:none;
+object-fit:contain;
 }
 
 #placeholder{
@@ -188,7 +205,10 @@ input[type=range]{
 width:100%;
 }
 
-select,input[type=text],input[type=number],input[type=tel]{
+select,
+input[type=text],
+input[type=number],
+input[type=tel]{
 width:100%;
 padding:11px;
 border-radius:7px;
@@ -204,7 +224,9 @@ gap:10px;
 margin-top:20px;
 }
 
-.actions .btn{margin-top:0}
+.actions .btn{
+margin-top:0;
+}
 
 .pricing{
 display:grid;
@@ -281,8 +303,19 @@ color:#f5c542;
 }
 
 @media(max-width:700px){
-.hero h1{font-size:32px}
-.nav a{display:none}
+
+.hero h1{
+font-size:32px;
+}
+
+.nav a{
+display:none;
+}
+
+.preview{
+min-height:220px;
+}
+
 }
 </style>
 </head>
@@ -291,28 +324,47 @@ color:#f5c542;
 
 <header>
 <div class="nav">
-<div class="logo">PixelProMax <span>Studio</span></div>
+
+<div class="logo">
+PixelProMax <span>Studio</span>
+</div>
+
 <nav>
 <a href="#editor">Editor</a>
 <a href="#pricing">Pricing</a>
 <a href="#payment">M-Pesa</a>
 </nav>
+
 </div>
 </header>
 
+
 <section class="hero">
-<h1>Create. Edit. <span>Pro.</span></h1>
+
+<h1>
+Create. Edit. <span>Pro.</span>
+</h1>
+
 <p>
 PixelProMax Studio makes it easy to edit photos and videos directly from your phone.
 Upload your media, adjust it, preview your work and prepare it for download.
 </p>
-<a href="#editor" class="btn">Start Editing</a>
+
+<a href="#editor" class="btn">
+Start Editing
+</a>
+
 </section>
 
+
 <section class="container">
-<h2 class="section-title">Your Studio</h2>
+
+<h2 class="section-title">
+Your Studio
+</h2>
 
 <div class="dashboard">
+
 <div class="stat">
 <strong>PHOTO</strong>
 <span>Professional editing</span>
@@ -332,249 +384,469 @@ Upload your media, adjust it, preview your work and prepare it for download.
 <strong>24/7</strong>
 <span>Available online</span>
 </div>
+
 </div>
+
 
 <div class="cards">
 
 <div class="card">
 <h3>📸 Photo Editing</h3>
-<p>Adjust brightness, contrast, saturation, blur and other visual effects.</p>
+<p>
+Adjust brightness, contrast, saturation, blur and other visual effects.
+</p>
 </div>
 
 <div class="card">
 <h3>🎬 Video Editing</h3>
-<p>Upload videos and preview them before preparing your project.</p>
+<p>
+Upload videos and preview them before preparing your project.
+</p>
 </div>
 
 <div class="card">
 <h3>✨ Pro Effects</h3>
-<p>Apply filters and creative effects to give your media a professional look.</p>
+<p>
+Apply filters and creative effects to give your media a professional look.
+</p>
 </div>
 
 <div class="card">
 <h3>📱 Mobile Friendly</h3>
-<p>Designed to work smoothly on smartphones, tablets and computers.</p>
+<p>
+Designed to work smoothly on smartphones, tablets and computers.
+</p>
 </div>
 
 </div>
+
 </section>
 
+
 <section class="container" id="editor">
-<h2 class="section-title">Media Editor</h2>
+
+<h2 class="section-title">
+Media Editor
+</h2>
 
 <div class="editor">
 
+
 <label class="upload" for="mediaInput">
-<div style="font-size:40px">⬆️</div>
-<h3>Tap to upload a photo or video</h3>
+
+<div style="font-size:40px">
+⬆️
+</div>
+
+<h3>
+Tap to upload a photo or video
+</h3>
+
 <p style="color:#777;margin-top:8px">
 JPG, PNG, WEBP, MP4 and supported media
 </p>
+
 </label>
 
-<input id="mediaInput" type="file" accept="image/*,video/*">
+
+<input
+id="mediaInput"
+type="file"
+accept="image/*,video/*"
+>
+
 
 <div class="preview">
+
 <div id="placeholder">
 Your selected media will appear here.
 </div>
 
-<img id="imagePreview" alt="Preview">
+<img
+id="imagePreview"
+alt="Selected photo preview"
+>
 
-<video id="videoPreview" controls></video>
+<video
+id="videoPreview"
+controls
+playsinline
+></video>
+
 </div>
+
 
 <div class="controls">
 
 <div class="control">
-<label>Brightness</label>
-<input id="brightness" type="range" min="50" max="150" value="100">
+
+<label>
+Brightness
+</label>
+
+<input
+id="brightness"
+type="range"
+min="50"
+max="150"
+value="100"
+>
+
 </div>
 
-<div class="control">
-<label>Contrast</label>
-<input id="contrast" type="range" min="50" max="150" value="100">
-</div>
 
 <div class="control">
-<label>Saturation</label>
-<input id="saturation" type="range" min="0" max="200" value="100">
+
+<label>
+Contrast
+</label>
+
+<input
+id="contrast"
+type="range"
+min="50"
+max="150"
+value="100"
+>
+
 </div>
 
-<div class="control">
-<label>Blur</label>
-<input id="blur" type="range" min="0" max="10" value="0">
-</div>
 
 <div class="control">
-<label>Filter</label>
+
+<label>
+Saturation
+</label>
+
+<input
+id="saturation"
+type="range"
+min="0"
+max="200"
+value="100"
+>
+
+</div>
+
+
+<div class="control">
+
+<label>
+Blur
+</label>
+
+<input
+id="blur"
+type="range"
+min="0"
+max="10"
+value="0"
+>
+
+</div>
+
+
+<div class="control">
+
+<label>
+Filter
+</label>
+
 <select id="filter">
-<option value="none">Original</option>
-<option value="grayscale(100%)">Black & White</option>
-<option value="sepia(80%)">Vintage</option>
-<option value="contrast(120%) saturate(130%)">Vivid</option>
-<option value="brightness(110%) saturate(80%)">Soft</option>
+
+<option value="none">
+Original
+</option>
+
+<option value="grayscale(100%)">
+Black & White
+</option>
+
+<option value="sepia(80%)">
+Vintage
+</option>
+
+<option value="contrast(120%) saturate(130%)">
+Vivid
+</option>
+
+<option value="brightness(110%) saturate(80%)">
+Soft
+</option>
+
 </select>
+
 </div>
 
 </div>
+
 
 <div class="actions">
-<button class="btn" onclick="applyReset()">Reset</button>
-<button class="btn dark" onclick="downloadImage()">Download Photo</button>
+
+<button
+class="btn"
+type="button"
+onclick="applyReset()"
+>
+Reset
+</button>
+
+<button
+class="btn dark"
+type="button"
+onclick="downloadImage()"
+>
+Download Photo
+</button>
+
 </div>
 
-<div id="editorStatus" class="status"></div>
+
+<div
+id="editorStatus"
+class="status"
+></div>
+
 
 </div>
+
 </section>
 
+
 <section class="container" id="pricing">
-<h2 class="section-title">Simple Pricing</h2>
+
+<h2 class="section-title">
+Simple Pricing
+</h2>
 
 <div class="pricing">
 
-<div class="card">
-<h3>Basic</h3>
-<div class="price">KSh 50</div>
-<p>Basic photo editing service.</p>
-<a href="#payment" class="btn">Choose Basic</a>
-</div>
 
 <div class="card">
-<h3>Pro</h3>
-<div class="price">KSh 100</div>
-<p>Advanced photo editing service.</p>
-<a href="#payment" class="btn">Choose Pro</a>
+
+<h3>
+Basic
+</h3>
+
+<div class="price">
+KSh 50
 </div>
+
+<p>
+Basic photo editing service.
+</p>
+
+<a href="#payment" class="btn">
+Choose Basic
+</a>
+
+</div>
+
 
 <div class="card">
-<h3>Premium</h3>
-<div class="price">KSh 200</div>
-<p>Premium editing service.</p>
-<a href="#payment" class="btn">Choose Premium</a>
+
+<h3>
+Pro
+</h3>
+
+<div class="price">
+KSh 100
 </div>
 
+<p>
+Advanced photo editing service.
+</p>
+
+<a href="#payment" class="btn">
+Choose Pro
+</a>
+
 </div>
+
+
+<div class="card">
+
+<h3>
+Premium
+</h3>
+
+<div class="price">
+KSh 200
+</div>
+
+<p>
+Premium editing service.
+</p>
+
+<a href="#payment" class="btn">
+Choose Premium
+</a>
+
+</div>
+
+
+</div>
+
 </section>
 
+
 <section class="container" id="payment">
-<h2 class="section-title">Pay with M-Pesa</h2>
+
+<h2 class="section-title">
+Pay with M-Pesa
+</h2>
 
 <div class="payment">
 
-<h3 style="text-align:center">M-Pesa Payment</h3>
+<h3 style="text-align:center">
+M-Pesa Payment
+</h3>
 
-<label>Amount (KSh)</label>
-<input id="amount" type="number" placeholder="Enter amount">
 
-<label>Your M-Pesa phone number</label>
-<input id="phone" type="tel" placeholder="07XXXXXXXX">
+<label>
+Amount (KSh)
+</label>
 
-<label>Service</label>
+<input
+id="amount"
+type="number"
+placeholder="Enter amount"
+>
+
+
+<label>
+Your M-Pesa phone number
+</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="07XXXXXXXX"
+>
+
+
+<label>
+Service
+</label>
+
 <select id="service">
-<option>Basic Photo Editing</option>
-<option>Pro Photo Editing</option>
-<option>Premium Photo Editing</option>
-<option>Video Editing</option>
+
+<option>
+Basic Photo Editing
+</option>
+
+<option>
+Pro Photo Editing
+</option>
+
+<option>
+Premium Photo Editing
+</option>
+
+<option>
+Video Editing
+</option>
+
 </select>
 
-<button class="btn" style="width:100%" onclick="startPayment()">
+
+<button
+class="btn"
+style="width:100%"
+type="button"
+onclick="startPayment()"
+>
 Continue with M-Pesa
 </button>
 
-<div id="paymentStatus" class="status"></div>
+
+<div
+id="paymentStatus"
+class="status"
+></div>
+
 
 <div class="payment-note">
-<strong>Important:</strong><br>
+
+<strong>
+Important:
+</strong>
+<br>
+
 Your payment details are collected here for the checkout process.
 The live M-Pesa STK Push will be connected to the secure payment
 backend before accepting real payments.
+
 </div>
 
 </div>
+
 </section>
 
+
 <section class="container">
-<h2 class="section-title">Why PixelProMax?</h2>
+
+<h2 class="section-title">
+Why PixelProMax?
+</h2>
 
 <div class="cards">
 
 <div class="card">
-<h3>Fast</h3>
-<p>Edit your content quickly without complicated software.</p>
+
+<h3>
+Fast
+</h3>
+
+<p>
+Edit your content quickly without complicated software.
+</p>
+
 </div>
+
 
 <div class="card">
-<h3>Easy</h3>
-<p>Everything is designed for simple use on your phone.</p>
+
+<h3>
+Easy
+</h3>
+
+<p>
+Everything is designed for simple use on your phone.
+</p>
+
 </div>
+
 
 <div class="card">
-<h3>Professional</h3>
-<p>Create polished photos and media for social media and business.</p>
+
+<h3>
+Professional
+</h3>
+
+<p>
+Create polished photos and media for social media and business.
+</p>
+
 </div>
 
 </div>
+
 </section>
 
+
 <footer>
-<p><strong>PixelProMax Studio</strong></p>
-<p>Professional Photo & Video Editing</p>
-<p style="margin-top:10px">© 2026 PixelProMax Studio. All rights reserved.</p>
-</footer>
 
-<script>
+<p>
+<strong>
+PixelProMax Studio
+</strong>
+</p>
 
-const mediaInput = document.getElementById("mediaInput");
-const imagePreview = document.getElementById("imagePreview");
-const videoPreview = document.getElementById("videoPreview");
-const placeholder = document.getElementById("placeholder");
+<p>
+Professional Photo & Video Editing
+</p>
 
-mediaInput.addEventListener("change", function(){
-
-const file = this.files[0];
-
-if(!file) return;
-
-const url = URL.createObjectURL(file);
-
-placeholder.style.display = "none";
-
-if(file.type.startsWith("image/")){
-
-imagePreview.src = url;
-imagePreview.style.display = "block";
-videoPreview.style.display = "none";
-
-updateFilters();
-
-}else if(file.type.startsWith("video/")){
-
-videoPreview.src = url;
-videoPreview.style.display = "block";
-imagePreview.style.display = "none";
-
-}
-
-});
-
-function updateFilters(){
-
-const b = document.getElementById("brightness").value;
-const c = document.getElementById("contrast").value;
-const s = document.getElementById("saturation").value;
-const bl = document.getElementById("blur").value;
-const f = document.getElementById("filter").value;
-
-imagePreview.style.filter =
-"brightness("+b+"%) "+
-"contrast("+c+"%) "+
-"saturate("+s+"%) "+
-"blur("+bl+"px) "+
-f;
-}
-
-["brightness","contrast","saturation","blur","filter"].forEach(function(id){
-
-document
+<p style="margin-top:10px">
+© 2026 PixelProMax Studio. All rights reserved.
+</p>
