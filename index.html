@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#111111">
+
 <title>PixelProMax Studio | Photo & Video Editing</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 margin:0;
@@ -97,6 +99,11 @@ color:#fff;
 border:1px solid #444;
 }
 
+.btn.upload-btn{
+font-size:16px;
+padding:15px 25px;
+}
+
 .container{
 max-width:1100px;
 margin:auto;
@@ -138,22 +145,39 @@ border-radius:16px;
 padding:20px;
 }
 
-.upload{
-display:block;
+.upload-area{
 border:2px dashed #555;
 border-radius:12px;
-padding:35px 20px;
+padding:30px 20px;
 text-align:center;
-cursor:pointer;
 margin-bottom:20px;
+background:#0d0d0d;
 }
 
-.upload:hover{
+.upload-area:hover{
 border-color:#f5c542;
 }
 
-input[type=file]{
-display:none;
+.upload-icon{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.upload-area h3{
+margin-bottom:8px;
+}
+
+.upload-area p{
+color:#777;
+margin-bottom:5px;
+}
+
+.file-input{
+position:absolute;
+width:1px;
+height:1px;
+opacity:0;
+pointer-events:none;
 }
 
 .preview{
@@ -302,6 +326,13 @@ font-size:28px;
 color:#f5c542;
 }
 
+#fileName{
+margin-top:12px;
+color:#aaa;
+font-size:14px;
+word-break:break-word;
+}
+
 @media(max-width:700px){
 
 .hero h1{
@@ -316,13 +347,27 @@ display:none;
 min-height:220px;
 }
 
+.controls{
+grid-template-columns:1fr;
 }
+
+.actions{
+flex-direction:column;
+}
+
+.actions .btn{
+width:100%;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <div class="nav">
 
 <div class="logo">
@@ -336,6 +381,7 @@ PixelProMax <span>Studio</span>
 </nav>
 
 </div>
+
 </header>
 
 
@@ -432,28 +478,41 @@ Media Editor
 <div class="editor">
 
 
-<label class="upload" for="mediaInput">
+<div class="upload-area">
 
-<div style="font-size:40px">
-⬆️
+<div class="upload-icon">
+📸
 </div>
 
 <h3>
-Tap to upload a photo or video
+Upload Your Photo or Video
 </h3>
 
-<p style="color:#777;margin-top:8px">
-JPG, PNG, WEBP, MP4 and supported media
+<p>
+Choose a photo from your phone gallery or a video from your device.
 </p>
 
-</label>
-
+<!-- IMPORTANT: This button directly opens the file picker -->
+<button
+class="btn upload-btn"
+type="button"
+id="uploadButton"
+>
+📁 Choose Photo / Video
+</button>
 
 <input
 id="mediaInput"
+class="file-input"
 type="file"
 accept="image/*,video/*"
 >
+
+<div id="fileName">
+No file selected
+</div>
+
+</div>
 
 
 <div class="preview">
@@ -586,7 +645,7 @@ Soft
 <button
 class="btn"
 type="button"
-onclick="applyReset()"
+id="resetButton"
 >
 Reset
 </button>
@@ -594,7 +653,7 @@ Reset
 <button
 class="btn dark"
 type="button"
-onclick="downloadImage()"
+id="downloadButton"
 >
 Download Photo
 </button>
@@ -754,7 +813,7 @@ Video Editing
 class="btn"
 style="width:100%"
 type="button"
-onclick="startPayment()"
+id="paymentButton"
 >
 Continue with M-Pesa
 </button>
@@ -771,6 +830,7 @@ class="status"
 <strong>
 Important:
 </strong>
+
 <br>
 
 Your payment details are collected here for the checkout process.
@@ -850,3 +910,329 @@ Professional Photo & Video Editing
 <p style="margin-top:10px">
 © 2026 PixelProMax Studio. All rights reserved.
 </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================
+   PHOTO / VIDEO UPLOAD
+========================================= */
+
+const mediaInput = document.getElementById("mediaInput");
+const uploadButton = document.getElementById("uploadButton");
+
+const imagePreview = document.getElementById("imagePreview");
+const videoPreview = document.getElementById("videoPreview");
+
+const placeholder = document.getElementById("placeholder");
+const fileName = document.getElementById("fileName");
+const editorStatus = document.getElementById("editorStatus");
+
+
+/*
+   This directly opens the phone's
+   gallery/file picker.
+*/
+uploadButton.addEventListener("click", function(){
+
+    mediaInput.click();
+
+});
+
+
+/*
+   This runs after the user chooses
+   a photo or video.
+*/
+mediaInput.addEventListener("change", function(event){
+
+    const file = event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    fileName.textContent =
+        "Selected: " + file.name;
+
+    const fileURL =
+        URL.createObjectURL(file);
+
+
+    /* PHOTO */
+
+    if(file.type.startsWith("image/")){
+
+        imagePreview.src = fileURL;
+
+        imagePreview.style.display = "block";
+
+        videoPreview.style.display = "none";
+
+        videoPreview.pause();
+
+        placeholder.style.display = "none";
+
+        editorStatus.style.display = "block";
+
+        editorStatus.textContent =
+            "✅ Photo loaded successfully. You can now edit it.";
+
+        updateImageEffects();
+
+    }
+
+
+    /* VIDEO */
+
+    else if(file.type.startsWith("video/")){
+
+        videoPreview.src = fileURL;
+
+        videoPreview.style.display = "block";
+
+        imagePreview.style.display = "none";
+
+        placeholder.style.display = "none";
+
+        editorStatus.style.display = "block";
+
+        editorStatus.textContent =
+            "✅ Video loaded successfully.";
+
+    }
+
+
+    else{
+
+        editorStatus.style.display = "block";
+
+        editorStatus.textContent =
+            "❌ This file type is not supported.";
+
+    }
+
+});
+
+
+/* =========================================
+   PHOTO EDITING CONTROLS
+========================================= */
+
+const brightness =
+document.getElementById("brightness");
+
+const contrast =
+document.getElementById("contrast");
+
+const saturation =
+document.getElementById("saturation");
+
+const blur =
+document.getElementById("blur");
+
+const filter =
+document.getElementById("filter");
+
+
+function updateImageEffects(){
+
+    imagePreview.style.filter =
+
+        "brightness(" +
+        brightness.value +
+        "%) " +
+
+        "contrast(" +
+        contrast.value +
+        "%) " +
+
+        "saturate(" +
+        saturation.value +
+        "%) " +
+
+        "blur(" +
+        blur.value +
+        "px) " +
+
+        filter.value;
+
+}
+
+
+brightness.addEventListener(
+"input",
+updateImageEffects
+);
+
+contrast.addEventListener(
+"input",
+updateImageEffects
+);
+
+saturation.addEventListener(
+"input",
+updateImageEffects
+);
+
+blur.addEventListener(
+"input",
+updateImageEffects
+);
+
+filter.addEventListener(
+"change",
+updateImageEffects
+);
+
+
+/* =========================================
+   RESET
+========================================= */
+
+document.getElementById("resetButton")
+.addEventListener("click", function(){
+
+    brightness.value = 100;
+
+    contrast.value = 100;
+
+    saturation.value = 100;
+
+    blur.value = 0;
+
+    filter.value = "none";
+
+    updateImageEffects();
+
+});
+
+
+/* =========================================
+   DOWNLOAD PHOTO
+========================================= */
+
+document.getElementById("downloadButton")
+.addEventListener("click", function(){
+
+    if(!imagePreview.src ||
+       imagePreview.style.display === "none"){
+
+        alert("Please upload a photo first.");
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.createElement("canvas");
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    canvas.width =
+        imagePreview.naturalWidth;
+
+    canvas.height =
+        imagePreview.naturalHeight;
+
+
+    ctx.filter =
+
+        "brightness(" +
+        brightness.value +
+        "%) " +
+
+        "contrast(" +
+        contrast.value +
+        "%) " +
+
+        "saturate(" +
+        saturation.value +
+        "%) " +
+
+        "blur(" +
+        blur.value +
+        "px) " +
+
+        filter.value;
+
+
+    ctx.drawImage(
+        imagePreview,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    const link =
+        document.createElement("a");
+
+    link.download =
+        "PixelProMax-Edited-Photo.png";
+
+    link.href =
+        canvas.toDataURL("image/png");
+
+    link.click();
+
+
+    editorStatus.style.display = "block";
+
+    editorStatus.textContent =
+        "✅ Your edited photo is ready.";
+
+});
+
+
+/* =========================================
+   M-PESA BUTTON
+========================================= */
+
+document.getElementById("paymentButton")
+.addEventListener("click", function(){
+
+    const amount =
+        document.getElementById("amount").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const service =
+        document.getElementById("service").value;
+
+    const paymentStatus =
+        document.getElementById("paymentStatus");
+
+
+    if(!amount || !phone){
+
+        alert(
+            "Please enter the amount and M-Pesa phone number."
+        );
+
+        return;
+
+    }
+
+
+    paymentStatus.style.display = "block";
+
+    paymentStatus.textContent =
+        "Payment request prepared for " +
+        service +
+        ". Live M-Pesa STK Push will require a secure payment backend.";
+
+});
+
+
+</script>
+
+</body>
+</html>
