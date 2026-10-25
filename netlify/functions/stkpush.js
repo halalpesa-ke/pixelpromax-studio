@@ -90,18 +90,24 @@ exports.handler = async (event) => {
 
     const date = new Date();
 
-    const timestamp = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Africa/Nairobi",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hourCycle: "h23"
-    })
-      .format(date)
-      .replace(/\D/g, "");
+    const parts = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Africa/Nairobi",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h23"
+}).formatToParts(new Date());
+
+const values = Object.fromEntries(
+  parts.map(({ type, value }) => [type, value])
+);
+
+const timestamp =
+  `${values.year}${values.month}${values.day}` +
+  `${values.hour}${values.minute}${values.second}`;
 
     const password = Buffer.from(
       `${DARAJA_SHORTCODE}${DARAJA_PASSKEY}${timestamp}`
